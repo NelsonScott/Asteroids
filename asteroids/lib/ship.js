@@ -9,9 +9,12 @@
     Asteroids.SHIPRADIUS,
     Asteroids.SHIPCOLOR);
   }
-  Asteroids.Util.inherits(Asteroids.Ship, Asteroids.movingObject);
 
-  Asteroids.Ship.prototype.relocate = function relocate() {
+  var ship = Asteroids.Ship;
+
+  ship.inherits(Asteroids.movingObject);
+
+  ship.prototype.relocate = function relocate() {
     this.pos = Asteroids.Game.randomPosition();
     this.vel = [0, 0];
   }

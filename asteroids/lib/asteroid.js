@@ -6,5 +6,5 @@
     Asteroids.movingObject.call(this, pos, Asteroids.Util.randomVec(20), Asteroids.RADIUS, Asteroids.COLOR);
   }
 
-  Asteroids.Util.inherits(Asteroids.Asteroid, Asteroids.movingObject);
+  Asteroids.Asteroid.inherits(Asteroids.movingObject);
 })();
