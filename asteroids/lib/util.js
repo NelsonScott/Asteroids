@@ -8,22 +8,11 @@
     window.Asteroids.Util = {};
   };
 
-  // Asteroids.Util.inherits = function (ChildClass, ParentClass) {
-  //   function Surrogate(){};
-  //   Surrogate.prototype = ParentClass.prototype;
-  //   ChildClass.prototype = new Surrogate();
-  // };
-
   Function.prototype.inherits = function (ParentClass) {
     function Surrogate(){};
     Surrogate.prototype = ParentClass.prototype;
     this.prototype = new Surrogate();
   };
-  // function inherits(ChildClass, ParentClass) {
-  //   function Surrogate(){};
-  //   Surrogate.prototype = ParentClass.prototype;
-  //   ChildClass.prototype = new Surrogate();
-  // };
 
   Asteroids.Util.randomVec = function (length) {
     var x = Math.random() * length;

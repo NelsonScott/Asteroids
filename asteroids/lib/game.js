@@ -1,8 +1,8 @@
 (function(){
-  var DIM_X = DIM_Y = 900;
-  var NUM_ASTEROIDS = 50;
+  var DIM_X = DIM_Y = 300;
+  var NUM_ASTEROIDS = 5;
 
-  Asteroids.Game = function Game () {
+  var game = Asteroids.Game = function Game () {
     this.DIM_X = DIM_X;
     this.DIM_Y = DIM_Y;
     this.NUM_ASTEROIDS = NUM_ASTEROIDS;
@@ -10,26 +10,26 @@
     this.ship = new Asteroids.Ship();
   }
 
-  Asteroids.Game.prototype.allObjects = function () {
+  game.prototype.allObjects = function () {
     return this.asteroids.concat([this.ship]);
   }
 
-  Asteroids.Game.addAsteroids = function (num_asteroids) {
+  game.addAsteroids = function (num_asteroids) {
     asteroids = [];
     for (var i = 0; i < num_asteroids; i++ ) {
-      asteroids.push(new Asteroids.Asteroid(Asteroids.Game.randomPosition()));
+      asteroids.push(new Asteroids.Asteroid(game.randomPosition()));
     }
 
     return asteroids;
   }
 
-  Asteroids.Game.randomPosition = function () {
+  game.randomPosition = function () {
     var x = Math.random() * DIM_X;
     var y = Math.random() * DIM_Y;
     return [x, y];
   }
 
-  Asteroids.Game.prototype.draw = function(context) {
+  game.prototype.draw = function(context) {
     context.clearRect(0, 0, DIM_X, DIM_Y);
     var allObjs = this.allObjects();
 
@@ -38,7 +38,7 @@
     })
   }
 
-  Asteroids.Game.prototype.moveObjects = function() {
+  game.prototype.moveObjects = function() {
     var allObjs = this.allObjects();
 
     for (obj in allObjs){
@@ -46,7 +46,7 @@
     }
   }
 
-  Asteroids.Game.prototype.checkCollisions = function() {
+  game.prototype.checkCollisions = function() {
     var toDelete = [];
 
     var allObjs = this.allObjects();
@@ -68,7 +68,7 @@
     return self.indexOf(value) === index;
   }
 
-  Asteroids.Game.prototype.remove = function(asteroid) {
+  game.prototype.remove = function(asteroid) {
     var idx = this.asteroids.indexOf(asteroid);
     var arr = this.asteroids;
     this.asteroids = arr.slice(0, idx).concat(arr.slice(idx+1, arr.length));

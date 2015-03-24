@@ -1,19 +1,23 @@
 (function(){
 
-
-  Asteroids.GameView = function GameView() {
+  var gameView = Asteroids.GameView = function GameView(game, context) {
     this.game = new Asteroids.Game();
-    this.canvas = document.getElementById('myCanvas');
-    this.context = this.canvas.getContext('2d');
+    this.context = context;
   }
 
-  Asteroids.GameView.prototype.start = function start() {
+  gameView.prototype.start = function start() {
     var that = this;
-    setInterval( function() {
+    // setInterval( function() {
+    //   that.game.moveObjects();
+    //   that.game.draw(that.context);
+    //   console.log("Calling draw from gameview");
+    //   that.game.checkCollisions();
+    // }, 1000);
       that.game.moveObjects();
       that.game.draw(that.context);
+      console.log("Calling draw from gameview");
       that.game.checkCollisions();
-    }, 20);
+    //Switch this back to 200 or so
   }
 
 })();

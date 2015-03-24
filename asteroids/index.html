@@ -10,6 +10,18 @@
     <script src = "lib/ship.js"></script>
   </head>
   <body>
-    <canvas id="myCanvas" width="900" height="900"></canvas>
+    <canvas id="myCanvas"></canvas>
   </body>
+
+  <script>
+  (function () {
+    var canvasEl = document.getElementById("myCanvas");
+    var game = new Asteroids.Game();
+    canvasEl.width = game.DIM_X;
+    canvasEl.height = game.DIM_Y;
+    var context = canvasEl.getContext("2d");
+    new Asteroids.GameView(game, context).start();
+  })();
+</script>
+
 </html>

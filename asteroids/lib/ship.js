@@ -1,16 +1,14 @@
 (function(){
   Asteroids.SHIPCOLOR = "blue";
-  Asteroids.SHIPRADIUS = 25;
+  Asteroids.SHIPRADIUS = 20;
 
-  Asteroids.Ship = function Ship(){
+  var ship = Asteroids.Ship = function Ship(){
     Asteroids.movingObject.call(this,
     Asteroids.Game.randomPosition(),
     [0, 0],
     Asteroids.SHIPRADIUS,
     Asteroids.SHIPCOLOR);
   }
-
-  var ship = Asteroids.Ship;
 
   ship.inherits(Asteroids.movingObject);
 
