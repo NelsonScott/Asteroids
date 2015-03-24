@@ -5,13 +5,15 @@
     this.context = context;
   }
 
+  GameView.FPS = 32;
+
   GameView.prototype.start = function start() {
     var that = this;
     setInterval( function() {
       that.game.moveObjects();
       that.game.draw(that.context);
       that.game.checkCollisions();
-    }, 100);
+    }, 1000/GameView.FPS);
   }
 
 })();

@@ -21,8 +21,7 @@
     Object.keys(Game.MOVES).forEach(function (k) {
       var move = Game.MOVES[k];
       key(k, function () {
-        // ship.power(move);
-        console.log("Key pressed: " + k);
+        ship.power(move);
       });
     });
 
