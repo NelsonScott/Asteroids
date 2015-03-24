@@ -1,19 +1,20 @@
 (function(){
-  Asteroids.SHIPCOLOR = "blue";
-  Asteroids.SHIPRADIUS = 20;
 
-  var ship = Asteroids.Ship = function Ship(bounds){
+  var Ship = Asteroids.Ship = function Ship(bounds){
+    Ship.SHIPCOLOR = "yellow";
+    Ship.SHIPRADIUS = 15;
+
     Asteroids.movingObject.call(this,
     Asteroids.Game.randomPosition(),
     [0, 0],
-    Asteroids.SHIPRADIUS,
-    Asteroids.SHIPCOLOR,
+    Ship.SHIPRADIUS,
+    Ship.SHIPCOLOR,
     bounds);
   }
 
-  ship.inherits(Asteroids.movingObject);
+  Ship.inherits(Asteroids.movingObject);
 
-  ship.prototype.relocate = function relocate() {
+  Ship.prototype.relocate = function relocate() {
     this.pos = Asteroids.Game.randomPosition();
     this.vel = [0, 0];
   }

@@ -2,11 +2,32 @@
   var Game = Asteroids.Game = function Game () {
     this.asteroids = Asteroids.Game.addAsteroids();
     this.ship = new Asteroids.Ship([Game.DIM_X, Game.DIM_Y]);
+    this.bindKeyHandlers();
   }
 
-  Game.DIM_X = 300;
-  Game.DIM_Y = 300;
+  Game.DIM_X = 600;
+  Game.DIM_Y = 600;
   Game.NUM_ASTEROIDS = 5;
+  Game.MOVES = {
+    "w": [ 0, -1],
+    "a": [-1,  0],
+    "s": [ 0,  1],
+    "d": [ 1,  0],
+  };
+
+  Game.prototype.bindKeyHandlers = function () {
+    var ship = this.ship;
+
+    Object.keys(Game.MOVES).forEach(function (k) {
+      var move = Game.MOVES[k];
+      key(k, function () {
+        // ship.power(move);
+        console.log("Key pressed: " + k);
+      });
+    });
+
+    // key("space", function () { ship.fireBullet() });
+  };
 
   Game.prototype.allObjects = function () {
     return this.asteroids.concat([this.ship]);
@@ -54,8 +75,8 @@
         var object2 = allObjs[obj2];
         if (object1 !== object2 && object1 instanceof Asteroids.Ship) {
           if (object1.isCollidedWith(object2)) {
-            console.log(object1);
-            object1.relocate();
+            // TODO turn back on
+            // object1.relocate();
           }
         }
       }

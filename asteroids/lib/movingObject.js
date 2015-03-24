@@ -22,8 +22,6 @@
   movingObject.prototype.wrap = function wrap(pos) {
     var x_bound = this.bounds[0];
     var y_bound = this.bounds[1];
-    console.log("x bound: " + x_bound);
-    console.log("y bound: " + y_bound);
 
     pos[0] = pos[0] > x_bound ? 0 : pos[0];
     pos[0] = pos[0] < 0 ? x_bound : pos[0];
