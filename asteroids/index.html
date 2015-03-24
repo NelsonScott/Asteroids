@@ -17,8 +17,8 @@
   (function () {
     var canvasEl = document.getElementById("myCanvas");
     var game = new Asteroids.Game();
-    canvasEl.width = game.DIM_X;
-    canvasEl.height = game.DIM_Y;
+    canvasEl.width = Asteroids.Game.DIM_X;
+    canvasEl.height = Asteroids.Game.DIM_Y;
     var context = canvasEl.getContext("2d");
     new Asteroids.GameView(game, context).start();
   })();

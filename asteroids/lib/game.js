@@ -1,36 +1,34 @@
 (function(){
-  var DIM_X = DIM_Y = 300;
-  var NUM_ASTEROIDS = 5;
-
-  var game = Asteroids.Game = function Game () {
-    this.DIM_X = DIM_X;
-    this.DIM_Y = DIM_Y;
-    this.NUM_ASTEROIDS = NUM_ASTEROIDS;
-    this.asteroids = Asteroids.Game.addAsteroids(this.NUM_ASTEROIDS);
-    this.ship = new Asteroids.Ship();
+  var Game = Asteroids.Game = function Game () {
+    this.asteroids = Asteroids.Game.addAsteroids();
+    this.ship = new Asteroids.Ship([Game.DIM_X, Game.DIM_Y]);
   }
 
-  game.prototype.allObjects = function () {
+  Game.DIM_X = 300;
+  Game.DIM_Y = 300;
+  Game.NUM_ASTEROIDS = 5;
+
+  Game.prototype.allObjects = function () {
     return this.asteroids.concat([this.ship]);
   }
 
-  game.addAsteroids = function (num_asteroids) {
+  Game.addAsteroids = function () {
     asteroids = [];
-    for (var i = 0; i < num_asteroids; i++ ) {
-      asteroids.push(new Asteroids.Asteroid(game.randomPosition()));
+    for (var i = 0; i < Game.NUM_ASTEROIDS; i++ ) {
+      asteroids.push(new Asteroids.Asteroid(Game.randomPosition(), [Game.DIM_X, Game.DIM_Y]));
     }
 
     return asteroids;
   }
 
-  game.randomPosition = function () {
-    var x = Math.random() * DIM_X;
-    var y = Math.random() * DIM_Y;
+  Game.randomPosition = function () {
+    var x = Math.random() * Game.DIM_X;
+    var y = Math.random() * Game.DIM_Y;
     return [x, y];
   }
 
-  game.prototype.draw = function(context) {
-    context.clearRect(0, 0, DIM_X, DIM_Y);
+  Game.prototype.draw = function(context) {
+    context.clearRect(0, 0, Game.DIM_X, Game.DIM_Y);
     var allObjs = this.allObjects();
 
     allObjs.forEach(function (obj) {
@@ -38,7 +36,7 @@
     })
   }
 
-  game.prototype.moveObjects = function() {
+  Game.prototype.moveObjects = function() {
     var allObjs = this.allObjects();
 
     for (obj in allObjs){
@@ -46,7 +44,7 @@
     }
   }
 
-  game.prototype.checkCollisions = function() {
+  Game.prototype.checkCollisions = function() {
     var toDelete = [];
 
     var allObjs = this.allObjects();
@@ -68,7 +66,7 @@
     return self.indexOf(value) === index;
   }
 
-  game.prototype.remove = function(asteroid) {
+  Game.prototype.remove = function(asteroid) {
     var idx = this.asteroids.indexOf(asteroid);
     var arr = this.asteroids;
     this.asteroids = arr.slice(0, idx).concat(arr.slice(idx+1, arr.length));
