@@ -35,7 +35,6 @@
     this.wrap(this.pos);
   }
 
-
   movingObject.prototype.isCollidedWith = function isCollidedWith(otherObject) {
     return this.distance(this.pos, otherObject.pos) <= this.r + otherObject.r;
   }
