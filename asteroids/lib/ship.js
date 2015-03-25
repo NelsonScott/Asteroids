@@ -1,6 +1,6 @@
 (function(){
-  var Ship = Asteroids.Ship = function Ship(){
-    Asteroids.movingObject.call(this, Asteroids.Game.randomPosition(), [0, 0], Ship.SHIPRADIUS, Ship.SHIPCOLOR);
+  var Ship = Asteroids.Ship = function Ship(game){
+    Asteroids.movingObject.call(this, Asteroids.Game.randomPosition(), [0, 0], Ship.SHIPRADIUS, Ship.SHIPCOLOR, game);
   }
 
   Ship.SHIPCOLOR = "yellow";
@@ -18,7 +18,7 @@
   }
 
   Ship.prototype.fireBullet = function () {
-    new Asteroids.bullet();
+    this.game.addBullet(new Asteroids.bullet(this.pos.slice()));
   };
 
 })();

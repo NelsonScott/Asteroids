@@ -1,7 +1,8 @@
 (function(){
   var Game = Asteroids.Game = function Game () {
-    this.asteroids = Asteroids.Game.addAsteroids();
-    this.ship = new Asteroids.Ship();
+    this.asteroids = this.addAsteroids();
+    this.ship = new Asteroids.Ship(this);
+    this.bullets = [];
     this.bindKeyHandlers();
   }
 
@@ -29,13 +30,17 @@
   };
 
   Game.prototype.allObjects = function () {
-    return this.asteroids.concat([this.ship]);
+    return this.asteroids.concat([this.ship], this.bullets);
   }
 
-  Game.addAsteroids = function () {
+  Game.prototype.addBullet = function(bullet) {
+    this.bullets.push(bullet);
+  }
+
+  Game.prototype.addAsteroids = function (){
     asteroids = [];
     for (var i = 0; i < Game.NUM_ASTEROIDS; i++ ) {
-      asteroids.push(new Asteroids.Asteroid(Game.randomPosition(), [Game.DIM_X, Game.DIM_Y]));
+      asteroids.push(new Asteroids.Asteroid(this, Game.randomPosition()));
     }
 
     return asteroids;

@@ -1,9 +1,10 @@
 (function () {
-  var movingObject = Asteroids.movingObject  = function movingObject (pos, vel, r, color) {
+  var movingObject = Asteroids.movingObject  = function movingObject (pos, vel, r, color, game) {
     this.pos = pos;
     this.vel = vel;
     this.r = r;
     this.color = color;
+    this.game = game;
   }
 
   movingObject.prototype.draw = function draw(context) {
