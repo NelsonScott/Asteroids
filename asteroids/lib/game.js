@@ -1,7 +1,7 @@
 (function(){
   var Game = Asteroids.Game = function Game () {
     this.asteroids = Asteroids.Game.addAsteroids();
-    this.ship = new Asteroids.Ship([Game.DIM_X, Game.DIM_Y]);
+    this.ship = new Asteroids.Ship();
     this.bindKeyHandlers();
   }
 
@@ -25,7 +25,7 @@
       });
     });
 
-    // key("space", function () { ship.fireBullet() });
+    key("space", function () { ship.fireBullet() });
   };
 
   Game.prototype.allObjects = function () {

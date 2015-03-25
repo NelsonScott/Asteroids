@@ -1,10 +1,9 @@
 (function () {
-  var movingObject = Asteroids.movingObject  = function movingObject (pos, vel, r, color, bounds) {
+  var movingObject = Asteroids.movingObject  = function movingObject (pos, vel, r, color) {
     this.pos = pos;
     this.vel = vel;
     this.r = r;
     this.color = color;
-    this.bounds = bounds;
   }
 
   movingObject.prototype.draw = function draw(context) {
@@ -20,8 +19,8 @@
   }
 
   movingObject.prototype.wrap = function wrap(pos) {
-    var x_bound = this.bounds[0];
-    var y_bound = this.bounds[1];
+    var x_bound = Asteroids.Game.DIM_X;
+    var y_bound = Asteroids.Game.DIM_Y;
 
     pos[0] = pos[0] > x_bound ? 0 : pos[0];
     pos[0] = pos[0] < 0 ? x_bound : pos[0];
