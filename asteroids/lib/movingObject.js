@@ -41,20 +41,10 @@
   }
 
   movingObject.outOfBounds = function(pos) {
-    var x = pos[0];
-    var y = pos[1];
     var x_bound = Asteroids.Game.DIM_X;
     var y_bound = Asteroids.Game.DIM_Y;
 
-    if (pos[0] < 0 || pos[0] > x_bound) {
-      return true;
-    }
-
-    if (pos[1] < 0 || pos[1] > y_bound){
-      return true;
-    }
-
-    return false;
+    return (pos[0] < 0 || pos[0] > x_bound) || (pos[1] < 0 || pos[1] > y_bound);
   }
 
   movingObject.prototype.isCollidedWith = function isCollidedWith(otherObject) {
