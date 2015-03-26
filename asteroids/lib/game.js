@@ -71,27 +71,26 @@
 
   Game.prototype.checkCollisions = function() {
     var toRemove = [];
-
     var allObjs = this.allObjects();
-    for (obj1 in allObjs) {
-      for (obj2 in allObjs) {
-        var object1 = allObjs[obj1];
-        var object2 = allObjs[obj2];
 
-        if ( (object1 === object2) || (!object1.isCollidedWith(object2)) ) continue;
-        if ( !(object2 instanceof Asteroids.Asteroid) ) continue;
+    for (var i = 0; i < allObjs.length; i++) {
+      for (var j = 0; j < allObjs.length; j++) {
+        var first = allObjs[i];
+        var second = allObjs[j];
 
-        if (object1 instanceof Asteroids.Ship) {
-          toRemove.push(object2);
-          object1.relocate();
-        } else if (object1 instanceof Asteroids.Bullet) {
-          toRemove.push(object1);
-          toRemove.push(object2);
+        if ((first === second) || (!first.isCollidedWith(second))) continue;
+        if (!(second instanceof Asteroids.Asteroid)) continue;
+
+        if (first instanceof Asteroids.Ship) {
+          first.relocate();
+        } else if (first instanceof Asteroids.Bullet) {
+          toRemove.push(first);
         }
+        toRemove.push(second);
       }
     }
 
-    for (var i = 0; i < toRemove.length; i++){
+    for (i = 0; i < toRemove.length; i++){
       this.remove(toRemove[i]);
     }
   }
