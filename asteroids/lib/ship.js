@@ -1,12 +1,12 @@
 (function(){
   var Ship = Asteroids.Ship = function Ship(game){
     this.wrappable = true;
-    Asteroids.movingObject.call(this, Asteroids.Game.randomPosition(), [0, 0], Ship.SHIPRADIUS, Ship.SHIPCOLOR, game);
+    Asteroids.MovingObject.call(this, Asteroids.Game.randomPosition(), [0, 0], Ship.SHIPRADIUS, Ship.SHIPCOLOR, game);
   }
 
   Ship.SHIPCOLOR = "yellow";
   Ship.SHIPRADIUS = 15;
-  Ship.inherits(Asteroids.movingObject);
+  Ship.inherits(Asteroids.MovingObject);
 
   Ship.prototype.relocate = function relocate() {
     this.pos = Asteroids.Game.randomPosition();
