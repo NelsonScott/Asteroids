@@ -13,6 +13,7 @@
       that.game.moveObjects();
       that.game.draw(that.context);
       that.game.checkCollisions();
+      that.game.checkState();
     }, 1000/GameView.FPS);
   }
 

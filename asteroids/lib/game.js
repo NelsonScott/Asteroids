@@ -1,6 +1,8 @@
 (function(){
   var Game = Asteroids.Game = function Game () {
-    this.asteroids = this.addAsteroids();
+    this.asteroids = [];
+    this.asteroidsCount = 5;
+    this.addAsteroids();
     this.ship = new Asteroids.Ship(this);
     this.bullets = [];
     this.bindKeyHandlers();
@@ -8,7 +10,6 @@
 
   Game.DIM_X = 600;
   Game.DIM_Y = 600;
-  Game.NUM_ASTEROIDS = 5;
   Game.MOVES = {
     "w": [ 0, -1],
     "a": [-1,  0],
@@ -38,12 +39,9 @@
   }
 
   Game.prototype.addAsteroids = function (){
-    asteroids = [];
-    for (var i = 0; i < Game.NUM_ASTEROIDS; i++ ) {
-      asteroids.push(new Asteroids.Asteroid(this, Game.randomPosition()));
+    for (var i = 0; i < this.asteroidsCount; i++ ) {
+      this.asteroids.push(new Asteroids.Asteroid(this, Game.randomPosition()));
     }
-
-    return asteroids;
   }
 
   Game.randomPosition = function () {
@@ -95,9 +93,16 @@
     }
   }
 
-  function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
-  }
+  Game.prototype.checkState = function () {
+    if (this.asteroids.length == 0){
+      if (this.asteroidsCount <= 80){
+        this.asteroidsCount *= 2;
+        this.addAsteroids();
+      } else {
+        this.addAsteroids();
+      }
+    }
+  };
 
   Game.prototype.remove = function(element) {
     if (element instanceof Asteroids.Asteroid){
