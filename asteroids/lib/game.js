@@ -102,12 +102,8 @@
 
   Game.prototype.remove = function(element) {
     if (element instanceof Asteroids.Asteroid){
-      var idx = this.asteroids.indexOf(element);
-      var arr = this.asteroids;
       this.asteroids.splice(this.asteroids.indexOf(element), 1);
     } else {
-      var idx = this.bullets.indexOf(element);
-      var arr = this.bullets;
       this.bullets.splice(this.bullets.indexOf(element), 1);
     }
   }
