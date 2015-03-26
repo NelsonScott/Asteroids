@@ -1,6 +1,7 @@
 (function(){
-  var Bullet = Asteroids.Bullet = function(pos, vel){
-    Asteroids.movingObject.call(this, pos, vel, Bullet.RADIUS, Bullet.COLOR);
+  var Bullet = Asteroids.Bullet = function(pos, vel, game){
+    this.wrappable = false;
+    Asteroids.movingObject.call(this, pos, vel, Bullet.RADIUS, Bullet.COLOR, game);
   }
 
   Bullet.RADIUS = 2;

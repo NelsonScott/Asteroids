@@ -32,7 +32,29 @@
   movingObject.prototype.move = function move() {
     this.pos[0] += this.vel[0];
     this.pos[1] += this.vel[1];
-    this.wrap(this.pos);
+
+    if (this.wrappable) {
+      this.wrap(this.pos);
+    } else if (Asteroids.movingObject.outOfBounds(this.pos)){
+      this.game.remove(this);
+    }
+  }
+
+  movingObject.outOfBounds = function(pos) {
+    var x = pos[0];
+    var y = pos[1];
+    var x_bound = Asteroids.Game.DIM_X;
+    var y_bound = Asteroids.Game.DIM_Y;
+
+    if (pos[0] < 0 || pos[0] > x_bound) {
+      return true;
+    }
+
+    if (pos[1] < 0 || pos[1] > y_bound){
+      return true;
+    }
+
+    return false;
   }
 
   movingObject.prototype.isCollidedWith = function isCollidedWith(otherObject) {

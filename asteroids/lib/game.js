@@ -104,11 +104,11 @@
     if (element instanceof Asteroids.Asteroid){
       var idx = this.asteroids.indexOf(element);
       var arr = this.asteroids;
-      this.asteroids = arr.slice(0, idx).concat(arr.slice(idx+1, arr.length));
+      this.asteroids.splice(this.asteroids.indexOf(element), 1);
     } else {
       var idx = this.bullets.indexOf(element);
       var arr = this.bullets;
-      this.bullets = arr.slice(0, idx).concat(arr.slice(idx+1, arr.length));
+      this.bullets.splice(this.bullets.indexOf(element), 1);
     }
   }
 
